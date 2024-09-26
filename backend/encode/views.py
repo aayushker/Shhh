@@ -1,6 +1,5 @@
 # from .serializers import EncodeSerializers
-from .Process import encode
-from rest_framework import status
+from .Process import encode, decode
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import FileResponse
@@ -33,3 +32,20 @@ class Encode(APIView):
         response = FileResponse(image_io, content_type=f'image/{image.format.lower()}')
         response['Content-Disposition'] = f'attachment; filename="processed_image.{image.format.lower()}"'
         return response
+    
+class Decode(APIView):
+    def post(self, request, *args, **kwargs):
+        
+        image_file = request.FILES.get('image')
+        
+        if not image_file:
+            return Response({"error": "Image is required."}, status=400)
+        
+        image = Image.open(image_file)
+        
+        # decode
+        message = decode(image)
+        
+        response = message
+        return Response(response)
+        

@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import Encode
+from .views import Encode, Decode
 
 urlpatterns = [
-    path('', Encode.as_view(), name='Encode')
+    path('encode/', Encode.as_view(), name='encode'),
+    path('decode/', Decode.as_view(), name='decode'),
 ]

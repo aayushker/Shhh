@@ -28,7 +28,8 @@ def encode(img, message):
 def decode(img):
     msg = ""
     idx = 0
-    
+    img = np.array(Image.open("./B1EXkZ2Em.jpeg"))
+    img = np.array(img)
     img = img.flatten()
     while msg[-5:] != '[END]':
         bits = [bin(i)[-1] for i in img[idx:idx+8]]
