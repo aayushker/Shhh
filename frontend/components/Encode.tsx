@@ -8,9 +8,13 @@ import {
   CardHeader,
   Textarea,
 } from "@nextui-org/react";
+import axios from "axios";
 
 const Encode = () => {
   const [image, setImage] = useState<string | ArrayBuffer | null>(null);
+  const [processedImage, setProcessedImage] = useState<string | null>(null);
+  const [message, setMessage] = useState<string>("");
+  const [confirmation, setConfirmation] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +46,30 @@ const Encode = () => {
 
   const handleClick = () => {
     fileInputRef.current?.click();
+  };
+
+  const handleSubmit = async () => {
+    if (!image || !message) {
+      setConfirmation("Please upload an image and enter a message.");
+      return;
+    }
+
+    const formData = new FormData();
+    const blob = await fetch(image as string).then((res) => res.blob());
+    formData.append("image", blob);
+    formData.append("text", message);
+
+    try {
+      const response = await axios.post("http://localhost:8000/api/encode/", formData, {
+        responseType: "blob",
+      });
+
+      const processedImageUrl = URL.createObjectURL(response.data);
+      setProcessedImage(processedImageUrl);
+      setConfirmation("Image processed successfully!");
+    } catch (error) {
+      setConfirmation("An error occurred while processing the image.");
+    }
   };
 
   return (
@@ -83,8 +111,23 @@ const Encode = () => {
           label="Text"
           placeholder="Enter your Text"
           className="mb-4"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
         />
-        <Button className="mt-4 hover:bg-green-400">Submit</Button>
+        <Button className="mt-4 hover:bg-green-400" onClick={handleSubmit}>Submit</Button>
+        {confirmation && <p className="mt-4 text-center">{confirmation}</p>}
+        {processedImage && (
+          <div className="mt-4 text-center">
+            <Image
+              src={processedImage}
+              alt="Processed Image"
+              className="w-full h-auto"
+            />
+            <a href={processedImage} download="processed_image.png">
+              <Button className="mt-4 hover:bg-blue-400">Download Processed Image</Button>
+            </a>
+          </div>
+        )}
       </Card>
     </div>
   );
