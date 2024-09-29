@@ -6,19 +6,30 @@ import matplotlib.pyplot as plt
 # message = input()
 def encode(img, message):
     img = np.array(img)
-    plt.imshow(img)
-    H,W, D= img.shape
     
+    # If the image has an alpha channel, ensure to process only RGB
+    if img.shape[2] == 4:
+        img = img[:, :, :3]
+
+    H, W, D = img.shape
+
     message += '[END]'
     message = message.encode("ascii")
     message_bits = ''.join([format(i, '08b') for i in message])
 
+    # Flatten the image array
     img = img.flatten()
+
+    # Ensure the message can fit within the image's pixel data
+    if len(message_bits) > len(img):
+        raise ValueError("Message is too large to encode in the provided image.")
+
     for idx, bit in enumerate(message_bits):
         val = img[idx]
-        val = bin(val)
-        val = val[:-1]+bit
-        img[idx] = int(val,2)
+        # Modify only the least significant bit
+        val = (val & 0xFE) | int(bit)
+        img[idx] = val
+
     img = img.reshape(H,W,D)
     img = Image.fromarray(img.astype('uint8'), 'RGB')
     
@@ -28,7 +39,6 @@ def encode(img, message):
 def decode(img):
     msg = ""
     idx = 0
-    img = np.array(Image.open("./B1EXkZ2Em.jpeg"))
     img = np.array(img)
     img = img.flatten()
     while msg[-5:] != '[END]':
@@ -40,5 +50,5 @@ def decode(img):
             print("There is no hidden message")
             break
     msg = msg[:-5]
-
+    print(msg)
     return msg
