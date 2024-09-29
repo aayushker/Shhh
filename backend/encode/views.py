@@ -17,11 +17,16 @@ class Encode(APIView):
         image_file = request.FILES.get('image')
         text = request.data.get('text')
 
+        # Check if the image and text is supplied or not
         if not image_file or not text:
             return Response({"error": "Image and text are required."}, status=400)
-
+        
         image = Image.open(image_file)
-
+        
+         # Check if the image is in a lossless format
+        if image.format.lower() not in ['png', 'bmp', 'tiff']:
+            return Response({"error": "Please use a lossless image format like PNG or BMP."}, status=400)
+        
         # encode 
         encoded_image = encode(image, text)
 
