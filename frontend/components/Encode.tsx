@@ -60,9 +60,13 @@ const Encode = () => {
     formData.append("text", message);
 
     try {
-      const response = await axios.post("http://localhost:8000/api/encode/", formData, {
-        responseType: "blob",
-      });
+      const response = await axios.post(
+        "http://localhost:8000/api/encode/",
+        formData,
+        {
+          responseType: "blob",
+        }
+      );
 
       const processedImageUrl = URL.createObjectURL(response.data);
       setProcessedImage(processedImageUrl);
@@ -75,7 +79,11 @@ const Encode = () => {
   return (
     <div>
       <p className="text-2xl sm:text-5xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
-        Add your <strong className="text-red-400">image</strong> and the <strong className="text-red-400">message</strong> to <strong className="bg-gradient-to-r from-stone-500 to-stone-700 bg-clip-text text-transparent">hide</strong>
+        Add your <strong className="text-red-400">image</strong> and the{" "}
+        <strong className="text-red-400">message</strong> to{" "}
+        <strong className="bg-gradient-to-r from-stone-500 to-stone-700 bg-clip-text text-transparent">
+          hide
+        </strong>
       </p>
       <Card isBlurred className="max-w-lg w-full mx-auto p-6 my-12">
         <div
@@ -88,12 +96,13 @@ const Encode = () => {
             <Image
               src={image as string}
               alt="Uploaded Image"
-              className="w-full h-auto"
+              className="w-full h-auto max-h-24"
             />
           ) : (
             <div className="text-center">
               <p className="text-gray-500">
-                Click to upload or drag and drop an image
+                Click to upload or drag and drop an image (Please use a lossless
+                image format like PNG or BMP.)
               </p>
             </div>
           )}
@@ -114,17 +123,21 @@ const Encode = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Button className="mt-4 hover:bg-green-400" onClick={handleSubmit}>Submit</Button>
+        <Button className="mt-4 hover:bg-green-400" onClick={handleSubmit}>
+          Submit
+        </Button>
         {confirmation && <p className="mt-4 text-center">{confirmation}</p>}
         {processedImage && (
           <div className="mt-4 text-center">
             <Image
               src={processedImage}
               alt="Processed Image"
-              className="w-full h-auto"
+              className="w-full h-auto max-w-24"
             />
             <a href={processedImage} download="processed_image.png">
-              <Button className="mt-4 hover:bg-blue-400">Download Processed Image</Button>
+              <Button className="mt-4 hover:bg-blue-400">
+                Download Processed Image
+              </Button>
             </a>
           </div>
         )}
