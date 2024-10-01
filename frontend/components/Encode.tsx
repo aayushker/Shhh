@@ -72,7 +72,7 @@ const Encode = () => {
       setProcessedImage(processedImageUrl);
       setConfirmation("Image processed successfully!");
     } catch (error) {
-      setConfirmation("An error occurred while processing the image.");
+      setConfirmation("An error  occurred while processing the image.");
     }
   };
 
