@@ -3,9 +3,7 @@ import {
   Card,
   Image,
   Button,
-  Input,
   Divider,
-  CardHeader,
   Textarea,
 } from "@nextui-org/react";
 import axios from "axios";
