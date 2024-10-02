@@ -17,11 +17,13 @@ A web-based application that allows users to hide secret messages within images 
   - [📄 **License**](#-license)
   - [🤝 **Acknowledgments**](#-acknowledgments)
 
+<br />
+
 ## 📜 **Purpose**
 
 The primary purpose of this project is to demonstrate how steganography can be used to encode and decode secret messages within images. The application supports lossless image formats such as PNG, BMP, and TIFF to ensure that no data is lost during encoding, making it ideal for confidential communications.
 
----
+<br />
 
 ## 🔥 **Features**
 
@@ -32,7 +34,7 @@ The primary purpose of this project is to demonstrate how steganography can be u
 - **User-friendly Interface**: Intuitive design for both technical and non-technical users.
 - **Error Handling**: Detects if no message is present or if an image format isn't supported.
 
----
+<br />
 
 ## 🖥️ **Technologies Used**
 
@@ -42,7 +44,7 @@ The primary purpose of this project is to demonstrate how steganography can be u
 - **Encryption**: Custom LSB-based encoding for steganography
 - **API Communication**: Axios
 
----
+<br />
 
 ## 🚀 **Getting Started**
 
@@ -83,6 +85,8 @@ Ensure you have the following installed:
     ```bash
     npm run dev
 
+<br />
+
 ## 📚 **Usage**
 
 1. **Encode a Message**:
@@ -94,7 +98,7 @@ Ensure you have the following installed:
     - Upload the image with the hidden message.
     - The application will decode and display the hidden message.
 
----
+<br />
 
 ## ⚙️ **API Endpoints**
 
@@ -109,7 +113,7 @@ Ensure you have the following installed:
         - `image`: The image file with the hidden message.
     - **Returns**: The decoded message as text.
 
----
+<br />
 
 ## 🛠️ **Custom Encryption**
 
@@ -124,14 +128,14 @@ This project uses a simple LSB (Least Significant Bit) encoding technique to hid
 - **Password Protection**: Require a password to decode the message.
 - **Bit Manipulation**: Use more sophisticated bit manipulation for additional security.
 
----
+<br />
 
 ## 🐛 **Known Issues**
 
 - **JPEG Support**: Due to JPEG's lossy compression, it is not supported for encoding messages. Only lossless formats like PNG, BMP, and TIFF are supported.
 - **Image Distortion**: Encoding very large messages may cause visible distortion in the image.
-
----
+  
+<br />
 
 ## 📝 **Future Enhancements**
 
@@ -140,7 +144,8 @@ This project uses a simple LSB (Least Significant Bit) encoding technique to hid
 - **Mobile-Friendly Design**: Make the web application responsive for mobile devices.
 - **Advanced Encryption**: Implement more secure encryption algorithms for message encoding.
 
----
+<br />
+
 <!-- 
 ## 🎨 **Screenshots**
 
@@ -152,15 +157,8 @@ This project uses a simple LSB (Least Significant Bit) encoding technique to hid
 
 Contributions are welcome! Please feel free to submit a pull request or open an issue for suggestions and improvements.
 
----
+<br />
 
 ## 📄 **License**
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
----
-
-## 🤝 **Acknowledgments**
-
-- Inspiration from various steganography projects online.
-- The developers of PIL and Numpy for making image processing so accessible in Python.
