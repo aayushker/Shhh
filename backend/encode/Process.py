@@ -1,3 +1,4 @@
+import io
 from PIL import Image
 import numpy as np 
 import matplotlib.pyplot as plt 
@@ -52,3 +53,13 @@ def decode(img):
     msg = msg[:-5]
     print(msg)
     return msg
+
+# Convert lossy image format to PNG
+def Convert(img):
+    try:
+        img_io = io.BytesIO()
+        img.save(img_io, format='PNG')
+        img_io.seek(0)
+        return Image.open(img_io)
+    except Exception as e:
+        return f"Error converting the image: {e}"
