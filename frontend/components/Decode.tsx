@@ -88,8 +88,7 @@ const Decode = () => {
           ) : (
             <div className="text-center">
               <p className="text-gray-500">
-                Click to upload or drag and drop an image (Please use a lossless
-                image format like PNG or BMP.)
+                Click to upload or drag and drop an image
               </p>
             </div>
           )}
