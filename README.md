@@ -1,5 +1,12 @@
-# Image Steganography Web Application
+![Shhh](https://socialify.git.ci/aayushker/Shhh/image?description=1&name=1&owner=1&pattern=Brick%20Wall&theme=Auto)
+<div align="center" style="display: flex; flex-direction: column; align-items: center;">
 
+*(under development)*
+
+[![wakatime](https://wakatime.com/badge/user/018dccea-572d-4bff-b35f-74753ebb999c/project/b13b39a4-8233-4fb0-953e-d48c86cacf73.svg)]()
+[![Vercel Deploy](https://deploy-badge.vercel.app/vercel/letsfoody)](https://shhh-apc.vercel.app)
+
+</div>
 A web-based application that allows users to hide secret messages within images (using steganography) and later decode them. This project implements custom encryption techniques to ensure a secure and reliable way of hiding data within images.
 
 ## Table of Contents
@@ -21,7 +28,7 @@ A web-based application that allows users to hide secret messages within images 
 
 ## 📜 **Purpose**
 
-The primary purpose of this project is to demonstrate how steganography can be used to encode and decode secret messages within images. The application supports lossless image formats such as PNG, BMP, and TIFF to ensure that no data is lost during encoding, making it ideal for confidential communications.
+The primary purpose of this project is to demonstrate how steganography can be used to encode and decode secret messages within images. The application supports all image formats but due to limitation of lossy image format like JPEG and JPG all image formats are converted to PNG format to ensure that no data is lost during encoding, making it ideal for confidential communications.
 
 <br />
 
@@ -29,7 +36,7 @@ The primary purpose of this project is to demonstrate how steganography can be u
 
 - **Encode a Message**: Hide secret messages within an image using least significant bit (LSB) manipulation.
 - **Decode a Message**: Retrieve hidden messages from an image that was encoded.
-- **Support for Lossless Image Formats**: Works with `.png`, `.bmp`, and `.tiff` files to ensure no data is lost during the encoding/decoding process.
+- **Support all Image Formats**: Works with all files to ensure no data is lost during the encoding/decoding process.
 - **Custom Encryption**: Uses a combination of encryption strategies (can be customized) to make the message more secure.
 - **User-friendly Interface**: Intuitive design for both technical and non-technical users.
 - **Error Handling**: Detects if no message is present or if an image format isn't supported.
@@ -90,7 +97,7 @@ Ensure you have the following installed:
 ## 📚 **Usage**
 
 1. **Encode a Message**:
-    - Upload a lossless image (PNG/BMP/TIFF).
+    - Upload a image.
     - Enter the message you want to encode.
     - The encoded image will be processed and available for download.
 
@@ -104,7 +111,7 @@ Ensure you have the following installed:
 
 - **POST `/api/encode/`**: Encodes the provided message into the uploaded image.
     - **Parameters**:
-        - `image`: The image file (PNG/BMP/TIFF).
+        - `image`: The image file.
         - `text`: The secret message.
     - **Returns**: A downloadable processed image file with the hidden message.
 
@@ -132,7 +139,7 @@ This project uses a simple LSB (Least Significant Bit) encoding technique to hid
 
 ## 🐛 **Known Issues**
 
-- **JPEG Support**: Due to JPEG's lossy compression, it is not supported for encoding messages. Only lossless formats like PNG, BMP, and TIFF are supported.
+- **JPEG Support**: Due to JPEG's lossy compression, it is not supported for encoding messages. So to overcome this issue all the lossy image file types are coverted internally to PNG.
 - **Image Distortion**: Encoding very large messages may cause visible distortion in the image.
   
 <br />
