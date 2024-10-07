@@ -9,6 +9,8 @@ import {
 import axios from "axios";
 
 const Encode = () => {
+  const url = process.env.NEXT_PUBLIC_url;
+
   const [image, setImage] = useState<string | ArrayBuffer | null>(null);
   const [processedImage, setProcessedImage] = useState<string | null>(null);
   const [message, setMessage] = useState<string>("");
@@ -59,7 +61,7 @@ const Encode = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/encode/",
+        `${url}/api/encode/`,
         formData,
         {
           responseType: "blob",

@@ -3,6 +3,8 @@ import { Card, Image, Button, Divider, Textarea } from "@nextui-org/react";
 import axios from "axios";
 
 const Decode = () => {
+  const url = process.env.NEXT_PUBLIC_url;
+
   const [image, setImage] = useState<string | ArrayBuffer | null>(null);
   const [message, setMessage] = useState<string>("");
   const [confirmation, setConfirmation] = useState<string>("");
@@ -51,7 +53,7 @@ const Decode = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/decode/",
+        `${url}/api/decode/`,
         formData
       );
 
