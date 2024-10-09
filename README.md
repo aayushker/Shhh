@@ -4,7 +4,8 @@
 *(under development)*
 
 [![wakatime](https://wakatime.com/badge/user/018dccea-572d-4bff-b35f-74753ebb999c/project/b13b39a4-8233-4fb0-953e-d48c86cacf73.svg)]()
-[![Vercel Deploy](https://deploy-badge.vercel.app/vercel/letsfoody)](https://shhh-apc.vercel.app)
+[![Vercel Deploy](https://deploy-badge.vercel.app/vercel/shhh)](https://shhh-apc.vercel.app)
+![Render](https://img.shields.io/badge/Render-Deployed-green?logo=render)
 
 </div>
 A web-based application that allows users to hide secret messages within images (using steganography) and later decode them. This project implements custom encryption techniques to ensure a secure and reliable way of hiding data within images.
@@ -23,7 +24,7 @@ A web-based application that allows users to hide secret messages within images 
   - [💡 **Contributing**](#-contributing)
   - [📄 **License**](#-license)
   - [🤝 **Acknowledgments**](#-acknowledgments)
-
+    
 <br />
 
 ## 📜 **Purpose**
@@ -50,6 +51,7 @@ The primary purpose of this project is to demonstrate how steganography can be u
 - **Image Processing**: PIL (Python Imaging Library), Numpy
 - **Encryption**: Custom LSB-based encoding for steganography
 - **API Communication**: Axios
+- **Deployment**: Vercel, Docker, Render, Cloudflare
 
 <br />
 
