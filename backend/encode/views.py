@@ -1,10 +1,15 @@
 # from .serializers import EncodeSerializers
 from .Process import encode, decode, Convert
 from rest_framework.views import APIView
+from django.http import JsonResponse
 from rest_framework.response import Response
 from django.http import FileResponse
 from PIL import Image
 import io
+
+# Heartbeat request
+def Heartbeat(request):
+    return JsonResponse({'status': 'Backend is active'})
 
 class Encode(APIView):
     def post(self, request, *args, **kwargs):
