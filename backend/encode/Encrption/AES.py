@@ -1,5 +1,4 @@
 from Crypto.Cipher import AES
-from Crypto.Random import get_random_bytes
 import base64
 
 # Padding to ensure the message length is a multiple of 16 bytes (required by AES)
@@ -20,11 +19,14 @@ def decrypt_aes(cipher_text, key):
     decrypted_bytes = cipher.decrypt(base64.b64decode(cipher_text))
     return decrypted_bytes.decode('utf-8').strip()
 
-# Example usage
-key = get_random_bytes(16)  # AES requires a key of 16, 24, or 32 bytes
-message = "This is a secret message!"
-encrypted = encrypt_aes(message, key)
-print("Encrypted:", encrypted)
-
-decrypted = decrypt_aes(encrypted, key)
-print("Decrypted:", decrypted)
+ch = input("Press D to decode and E to Encode")
+if ch == 'E':
+    mssg = input("Enter the message to be encoded")
+    key = input("Enter the key to encode the mssg")
+    enc = encrypt_aes(mssg, key)
+    print(enc)
+elif ch == 'D':
+    mssg = input("Enter the message to bcypher text encoded")
+    key = input("Enter the key")
+    enc = decrypt_aes(mssg, key)
+    print(enc)
