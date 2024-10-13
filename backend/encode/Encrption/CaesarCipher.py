@@ -1,22 +1,13 @@
-def caesar_cipher_encrypt(text, shift):
+def encrypt_CaesarCipher(text, shift):
     result = ""
-    for i in range(len(text)):
-        char = text[i]
+    for char in text:
         if char.isupper():
             result += chr((ord(char) + shift - 65) % 26 + 65)
-        else:
+        elif char.islower():
             result += chr((ord(char) + shift - 97) % 26 + 97)
+        else:
+            result += char
     return result
 
-def caesar_cipher_decrypt(cipher_text, shift):
-    return caesar_cipher_encrypt(cipher_text, -shift)
-
-# Example usage
-message = "This is a secret message!"
-shift = 3
-
-encrypted = caesar_cipher_encrypt(message, shift)
-print("Encrypted:", encrypted)
-
-decrypted = caesar_cipher_decrypt(encrypted, shift)
-print("Decrypted:", decrypted)
+def decrypt_CaesarCipher(cipher_text, shift):
+    return encrypt_CaesarCipher(cipher_text, -shift)
