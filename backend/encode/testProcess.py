@@ -7,6 +7,11 @@ def Encryption(mssg, type):
     if type == 'Base64':
         mssg = Base64.encrypt_Base64(mssg)
         return mssg
+    
+def Decrption(mssg, type):
+    if type == 'Base64':
+        mssg = Base64.decrypt_Base64(mssg)
+        return mssg
 
 # Code to encode the message
 def encode(img, message, type):
