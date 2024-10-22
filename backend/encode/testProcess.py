@@ -7,10 +7,16 @@ def Encryption(mssg, type):
     if type == 'Base64':
         mssg = Base64.encrypt_Base64(mssg)
         return mssg
+    elif type == 'CaesarCipher':
+        mssg = CaesarCipher.encrypt_CaesarCipher(mssg)
+        return mssg
     
 def Decrption(mssg, type):
     if type == 'Base64':
         mssg = Base64.decrypt_Base64(mssg)
+        return mssg
+    elif type == 'CaesarCipher':
+        mssg = CaesarCipher.decrypt_CaesarCipher(mssg)
         return mssg
 
 # Code to encode the message
