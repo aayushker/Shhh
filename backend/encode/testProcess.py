@@ -10,6 +10,9 @@ def Encryption(mssg, type):
     elif type == 'CaesarCipher':
         mssg = CaesarCipher.encrypt_CaesarCipher(mssg)
         return mssg
+    elif type == 'Fernet':
+        mssg = Fernet.encrypt_Fernet(mssg)
+        return mssg
     
 def Decrption(mssg, type):
     if type == 'Base64':
@@ -17,6 +20,9 @@ def Decrption(mssg, type):
         return mssg
     elif type == 'CaesarCipher':
         mssg = CaesarCipher.decrypt_CaesarCipher(mssg)
+        return mssg
+    elif type == 'Fernet':
+        mssg = Fernet.decrypt_Fernet(mssg)
         return mssg
 
 # Code to encode the message
