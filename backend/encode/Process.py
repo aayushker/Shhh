@@ -2,6 +2,31 @@ import io
 from PIL import Image
 import numpy as np 
 import matplotlib.pyplot as plt 
+from .Encrption import AES, Base64, CaesarCipher, Fernet, RSA, VigenereCipher
+
+
+def Encryption(mssg, type):
+    if type == 'Base64':
+        mssg = Base64.encrypt_Base64(mssg)
+        return mssg
+    elif type == 'CaesarCipher':
+        mssg = CaesarCipher.encrypt_CaesarCipher(mssg)
+        return mssg
+    elif type == 'Fernet':
+        mssg = Fernet.encrypt_Fernet(mssg)
+        return mssg
+    
+def Decrption(mssg, type):
+    if type == 'Base64':
+        mssg = Base64.decrypt_Base64(mssg)
+        return mssg
+    elif type == 'CaesarCipher':
+        mssg = CaesarCipher.decrypt_CaesarCipher(mssg)
+        return mssg
+    elif type == 'Fernet':
+        mssg = Fernet.decrypt_Fernet(mssg)
+        return mssg
+
 
 # Code to encode the message
 # message = input()
