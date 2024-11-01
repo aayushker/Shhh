@@ -3,30 +3,46 @@ from PIL import Image
 import numpy as np 
 from .Encrption import AES, Base64, CaesarCipher, Fernet, RSA, VigenereCipher
 
-def Encryption(mssg, type):
-    if type == 'Base64':
-        mssg = Base64.encrypt_Base64(mssg)
-        return mssg
-    elif type == 'CaesarCipher':
-        mssg = CaesarCipher.encrypt_CaesarCipher(mssg)
-        return mssg
-    elif type == 'Fernet':
-        mssg = Fernet.encrypt_Fernet(mssg)
-        return mssg
+def testEncryption(unencryptedText, encryptionType, secretKey):
+    if encryptionType == 'Base64':
+        encryptedText = Base64.encrypt_Base64(unencryptedText)
+        return encryptedText
+    elif encryptionType == 'CaesarCipher':
+        encryptedText = CaesarCipher.encrypt_CaesarCipher(unencryptedText)
+        return encryptedText
+    elif encryptionType == 'Fernet':
+        encryptedText = Fernet.encrypt_Fernet(unencryptedText)
+        return encryptedText
+    elif encryptionType == 'AES':
+        encryptedText = AES.encrypt_aes(unencryptedText, secretKey)
+        return encryptedText
+    elif encryptionType == 'CaesarCipher':
+        encryptedText = CaesarCipher.decrypt_CaesarCipher(unencryptedText, secretKey)
+        return encryptedText
+    else:
+        return 'Invalid encryption type'
     
-def Decrption(mssg, type):
-    if type == 'Base64':
-        mssg = Base64.decrypt_Base64(mssg)
-        return mssg
-    elif type == 'CaesarCipher':
-        mssg = CaesarCipher.decrypt_CaesarCipher(mssg)
-        return mssg
-    elif type == 'Fernet':
-        mssg = Fernet.decrypt_Fernet(mssg)
-        return mssg
-
+def testDecrpytion(encryptedText, encryptionType, secretKey):
+    if encryptionType == 'Base64':
+        unencryptedText = Base64.decrypt_Base64(encryptedText)
+        return unencryptedText
+    elif encryptionType == 'CaesarCipher':
+        unencryptedText = CaesarCipher.decrypt_CaesarCipher(encryptedText)
+        return unencryptedText
+    elif encryptionType == 'Fernet':
+        unencryptedText = Fernet.decrypt_Fernet(encryptedText)
+        return unencryptedText
+    elif encryptionType == 'AES':
+        unencryptedText = AES.decrypt_aes(encryptedText, secretKey)
+        return unencryptedText
+    elif encryptionType == 'CaesarCipher':
+        unencryptedText = CaesarCipher.decrypt_CaesarCipher(encryptedText, secretKey)
+        return unencryptedText
+    else:
+        return 'Invalid encryption type'
+    
 # Code to encode the message
-def encode(img, message, type):
+def testEncode(img, message, encryptionType):
     img = np.array(img)
     
     # If the image has an alpha channel, ensure to process only RGB
@@ -35,8 +51,8 @@ def encode(img, message, type):
 
     H, W, D = img.shape
     
-    if type != 'none':
-        message = Encryption(message, type)
+    if encryptionType != 'none':
+        message = testEncryption(message, encryptionType)
     message += '[END]'
     message = message.encode("ascii")
     message_bits = ''.join([format(i, '08b') for i in message])
@@ -55,12 +71,12 @@ def encode(img, message, type):
         img[idx] = val
 
     img = img.reshape(H,W,D)
-    img = Image.fromarray(img.astype('uint8'), 'RGB')
+    img = Image.fromarray(img.asencryptionType('uint8'), 'RGB')
     
     return img
 
 # Code to decode the message
-def decode(img):
+def testDecode(img, encryptionType):
     msg = ""
     idx = 0
     img = np.array(img)
