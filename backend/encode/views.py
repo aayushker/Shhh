@@ -1,5 +1,6 @@
 # from .serializers import EncodeSerializers
 from .Process import encode, decode, Convert
+from .testProcess import testEncryption, testDecrpytion
 from rest_framework.views import APIView
 from django.http import JsonResponse
 from rest_framework.response import Response
@@ -44,7 +45,7 @@ class Encode(APIView):
         image_io.seek(0)
 
         # Return the processed image as a downloadable file
-        response = FileResponse(image_io, content_type='image/png')
+        response = FileResponse(image_io, content_encryptionType='image/png')
         response['Content-Disposition'] = 'attachment; filename="processed_image.png"'
         return response
 
@@ -63,4 +64,53 @@ class Decode(APIView):
         
         response = message
         return Response(response)
+
+# View to check the working of Encryption algorithms      
+class testEncode(APIView):
+    def post(self, request, *args, **kwargs):
+        unencryptedText = request.data.get('unencryptedText')
+        encryptionType = request.data.get('encryptionType')
+        secretKey = request.data.get('secretKey')
         
+        if not unencryptedText or not encryptionType:
+            return Response({"error": "Text or Encryption Type not present"}, status=400)
+        
+        if encryptionType in ['AES'] and secretKey == "none":
+            return Response({"error": "Password not provided"}, status=400)
+        encryptedText = testEncryption(unencryptedText, encryptionType, secretKey)
+        
+        response = encryptedText
+        return Response(response)
+
+# View to check the working of Encryption algorithms      
+class testDecode(APIView):
+    def post(self, request, *args, **kwargs):
+        encryptedText = request.data.get('encryptedText')
+        encryptionType = request.data.get('encryptionType')
+        secretKey = request.data.get('secretKey')
+        
+        if not encryptedText or not encryptionType:
+            return Response({"error": "Text or Encryption Type not present"}, status=400)
+        
+        if encryptionType in ['AES'] and secretKey == "none":
+            return Response({"error": "Password not provided"}, status=400)
+        
+        decryptedText = testDecrpytion(encryptedText, encryptionType, secretKey)
+        
+        response = decryptedText
+        return Response(response)
+    
+
+# sample post json for testEncode
+# {
+#   "unencryptedText":"khikhikhukhu",
+#   "encryptionType":"Base64",
+#   "secretKey":"none"
+# }
+
+# sample post json for testDecode
+# {
+#   "encryptedText":"a2hpa2hpa2h1a2h1",
+#   "encryptionType":"Base64",
+#   "secretKey":"none"
+# }
