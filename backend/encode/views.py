@@ -1,4 +1,3 @@
-# from .serializers import EncodeSerializers
 from .Process import encode, decode, Convert
 from .testProcess import testEncryption, testDecrpytion
 from rest_framework.views import APIView

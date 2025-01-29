@@ -1,9 +1,7 @@
 import io
 from PIL import Image
 import numpy as np 
-import matplotlib.pyplot as plt 
 from .Encrption import AES, Base64, CaesarCipher, Fernet, RSA, VigenereCipher
-
 
 def Encryption(mssg, type):
     if type == 'Base64':
