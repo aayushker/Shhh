@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.23.3",
+    "@clerk/nextjs": "^6.39.3",
     "@nextui-org/react": "^2.4.8",
     "axios": "^1.15.0",
     "clsx": "^2.1.1",
